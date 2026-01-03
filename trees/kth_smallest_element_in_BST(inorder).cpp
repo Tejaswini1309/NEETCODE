@@ -13,20 +13,23 @@
 class Solution {
 public:
     vector<int>v;
-    vector<int> preorder(TreeNode* root){
+    vector<int> inorder(TreeNode* root){
         if(root==NULL){
             return v;
         }
-        preorder(root->left);
+        inorder(root->left);
         v.push_back(root->val);
-        preorder(root->right);
+        inorder(root->right);
         return v;
     }
     // since preorder traversal of a BST returns the ascending order
-    // of elements in the BST , we first do preorder get the sorted 
+    // of elements in the BST , we first do inorder get the sorted 
     // vector and return the element at index k-1
+    // inorder -> left,myself,right
+    // preorder -> myself,left,right
+    // postorder -> left,right,myself
     int kthSmallest(TreeNode* root, int k) {
-        vector<int>s = preorder(root);
+        vector<int>s = inorder(root);
         return s[k-1];
     }
 };
